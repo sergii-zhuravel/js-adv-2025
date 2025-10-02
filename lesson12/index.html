@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <p>Test p</p>
+    </div>
+
+    <button>Go to Wiki</button>
+
+    <script>
+      document
+        .querySelector("button")
+        .addEventListener(
+          "click",
+          () =>
+            (location.href =
+              "https://uk.wikipedia.org/wiki/%D0%93%D0%BE%D0%BB%D0%BE%D0%B2%D0%BD%D0%B0_%D1%81%D1%82%D0%BE%D1%80%D1%96%D0%BD%D0%BA%D0%B0")
+        );
+
+      document.body.addEventListener(
+        "click",
+        (event) => {
+          console.log("body");
+          // event.stopPropagation()
+        },
+        true
+      );
+      document.body.children[0].addEventListener(
+        "click",
+        () => console.log("div"),
+        true
+      );
+      document.body.children[0].children[0].addEventListener(
+        "click",
+        (event) => {
+          console.log("p");
+        },
+        true
+      );
+
+      document.body.addEventListener(
+        "click",
+        (event) => console.log("body"),
+        false
+      );
+      document.body.children[0].addEventListener(
+        "click",
+        () => console.log("div"),
+        false
+      );
+      document.body.children[0].children[0].addEventListener(
+        "click",
+        (event) => {
+          console.log("p");
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
