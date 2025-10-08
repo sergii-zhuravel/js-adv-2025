@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="/some-url" method="POST">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div>
+        <label for="name">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          pattern="\w{3,5}"
+        />
+      </div>
+      <input type="submit" value="Send me" />
+      <button>Reset</button>
+    </form>
+
+    <script>
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(form);
+
+        const name = formData.get("name");
+        const password = formData.get("password");
+
+        if (name.lenth > 10) {
+          // send to server
+        }
+
+        console.log("sumbitted");
+      });
+
+      document.querySelector("button").addEventListener("click", () => {
+        form.reset();
+      });
+    </script>
+  </body>
+</html>
