@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="slider" class="slider">
+      <button onclick="showPrevSlide()" id="btn-prev"><</button>
+      <div class="slider content">
+        <div class="slide">1</div>
+        <div class="slide">2</div>
+        <div class="slide">3</div>
+      </div>
+      <button onclick="showNextSlide()" id="btn-next">></button>
+    </div>
+    <script>
+      const btnPrev = document.querySelector("#btn-prev");
+      const btnNext = document.querySelector("#btn-next");
+
+      const slider = document.getElementById("slider");
+      const allSlides = document.querySelectorAll(".slide");
+
+      allSlides[0].classList.add("active");
+      btnPrev.disabled = true;
+
+      btnNext.addEventListener("click");
+
+      function checkButtons() {
+        const currentSlide = document.querySelector(".active");
+        if (currentSlide === allSlides[0]) {
+          btnPrev.disabled = true;
+        } else {
+          btnPrev.disabled = false;
+        }
+
+        if (currentSlide === allSlides[allSlides.length - 1]) {
+          btnNext.disabled = true;
+        } else {
+          btnNext.disabled = false;
+        }
+      }
+
+      function showNextSlide() {
+        const currentSlide = document.querySelector(".active");
+        const nextSlide = currentSlide.nextElementSibling;
+
+        if (nextSlide) {
+          nextSlide.classList.add("active");
+          currentSlide.classList.remove("active");
+        }
+
+        checkButtons();
+      }
+
+      function showPrevSlide() {
+        const currentSlide = document.querySelector(".active");
+        const prevSlide = currentSlide.previousElementSibling;
+
+        if (prevSlide) {
+          prevSlide.classList.add("active");
+          currentSlide.classList.remove("active");
+        }
+
+        checkButtons();
+      }
+    </script>
+    <style>
+      .slider {
+        display: flex;
+        align-items: center;
+        position: relative;
+      }
+      .slider.content {
+        width: 500px;
+        height: 300px;
+      }
+      .slide {
+        position: absolute;
+        width: 500px;
+        height: 300px;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+      .slide.active {
+        opacity: 1;
+      }
+    </style>
+  </body>
+</html>
