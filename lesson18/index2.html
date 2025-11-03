@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width>, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="display">00:00:00</div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+      const startButton = document.querySelector("#start");
+      const stopButton = document.querySelector("#stop");
+      const display = document.querySelector("#display");
+
+      class Clock {
+        self;
+        constructor() {
+          this.intervalId = false;
+          self = this;
+          startButton.addEventListener("click", self.startClock);
+          stopButton.addEventListener("click", self.stopClock);
+        }
+
+        startClock() {
+          this.intervalId = setInterval(self.updateClock, 1000);
+        }
+
+        stopClock() {
+          clearInterval(self.intervalId);
+          this.intervalId = undefined;
+        }
+
+        updateClock() {
+          const dateNow = new Date();
+
+          const hours = dateNow.getHours().toString().padStart(2, "0");
+          const minutes = dateNow.getMinutes().toString().padStart(2, "0");
+          const seconds = dateNow.getSeconds().toString().padStart(2, "0");
+
+          display.textContent = `${hours}:${minutes}:${seconds}`;
+        }
+      }
+
+      new Clock();
+    </script>
+  </body>
+</html>
