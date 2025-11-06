@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <span id="name"></span>
+      <img />
+    </div>
+    <script>
+      function displayInfo(userInfo) {
+        const name = document.getElementById("name");
+        const image = document.getElementsByTagName("img")[0];
+
+        name.textContent = userInfo.name;
+
+        image.src = userInfo.avatar_url;
+      }
+
+      async function makeRequest() {
+        // const resp = await fetch(
+        //   "https://api.github.com/users/sergii-zhuravel"
+        // );
+        // const data = await resp.json();
+
+        fetch("https://api.github.com/users/sergii-zhuravel")
+          .then((resp) => resp.json())
+          .then((data) => displayInfo(data));
+
+        // displayInfo(data);
+      }
+
+      makeRequest();
+    </script>
+  </body>
+</html>

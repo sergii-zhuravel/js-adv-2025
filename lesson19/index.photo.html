@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <table id="photos"></table>
+    </div>
+    <script>
+      function displayInfo(photos) {
+        const photosTable = document.getElementById("photos");
+        const photosTemplate = document.getElementById("photos-template");
+
+        for (let photo of photos) {
+          const row = photosTemplate.content.cloneNode(true);
+          const cells = row.children[0].children;
+          cells[0].textContent = photo.title;
+          cells[1].textContent = photo.url;
+
+          photosTable.append(row);
+        }
+
+        // const image = document.getElementsByTagName("img")[0];
+
+        // name.textContent = userInfo.name;
+
+        // image.src = userInfo.avatar_url;
+      }
+
+      async function makeRequest() {
+        const resp = await fetch("https://jsonplaceholder.typicode.com/photos");
+        const data = await resp.json();
+
+        displayInfo(data);
+      }
+
+      makeRequest();
+    </script>
+
+    <template id="photos-template">
+      <tr>
+        <td>dd</td>
+        <td>dfdf</td>
+      </tr>
+    </template>
+  </body>
+</html>
