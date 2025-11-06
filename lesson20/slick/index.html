@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/slick-carousel/slick/slick.min.js"></script>
+
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="node_modules/slick-carousel/slick/slick.css"
+    />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="node_modules/slick-carousel/slick/slick-theme.css"
+    />
+  </head>
+  <body>
+    <div id="carousel" data-slick='{"slidesToShow": 2, "slidesToScroll": 2}'>
+      <div><h3>1</h3></div>
+      <div><h3>2</h3></div>
+      <div><h3>3</h3></div>
+      <div><h3>4</h3></div>
+      <div><h3>5</h3></div>
+      <div><h3>6</h3></div>
+    </div>
+    <script>
+      $(document).ready(() => {
+        $("#carousel").slick({
+          dots: true,
+          speed: 500,
+        });
+      });
+    </script>
+  </body>
+</html>
