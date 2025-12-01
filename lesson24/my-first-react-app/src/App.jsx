@@ -2,8 +2,8 @@ import "./App.css";
 
 const MyCoolComponent = () => <div>I'm cool component!</div>;
 
-function Header() {
-  const name = "Nick";
+function Header(props) {
+  const { name } = props;
 
   return (
     <div tabIndex="1">
@@ -23,7 +23,7 @@ function Test() {
 function App() {
   return (
     <>
-      <Header />
+      <Header name="Nick" age={34} />
       <Test />
       <MyCoolComponent />
     </>
