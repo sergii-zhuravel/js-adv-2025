@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <p>
+        Clicked: <span id="value">0</span> times
+        <button id="increment">+</button>
+        <button id="decrement">-</button>
+      </p>
+    </div>
+
+    <script type="module">
+      import { createStore } from "https://unpkg.com/redux@latest/dist/redux.browser.mjs";
+
+      const valueEl = document.getElementById("value");
+      const incrementBtn = document.getElementById("increment");
+      const decrementBtn = document.getElementById("decrement");
+
+      const initialState = {
+        value: 1,
+      };
+
+      const incrementType = "counter/increment";
+      const decrementType = "counter/decrement";
+
+      // Create reducer
+      function rootReducer(state = initialState, action) {
+        switch (action.type) {
+          case incrementType:
+            return { ...state, value: state.value + 1 };
+          case decrementType:
+            return { ...state, value: state.value - 1 };
+          default:
+            return state;
+        }
+      }
+
+      // create store
+
+      const store = createStore(rootReducer);
+
+      console.log(store);
+
+      function render() {
+        const state = store.getState();
+        valueEl.textContent = state.value;
+      }
+
+      store.subscribe(render);
+
+      // update on store change
+      incrementBtn.addEventListener("click", () => {
+        store.dispatch({ type: incrementType });
+      });
+
+      decrementBtn.addEventListener("click", () => {
+        store.dispatch({ type: decrementType });
+      });
+    </script>
+  </body>
+</html>
